@@ -19,19 +19,21 @@ export default function Home() {
   ]
 
   const [data,setData] = useState(dataArray)
+  const [data2,setData2] = useState(dataObject)
 
   return (
     <div className='p-5 text-sm'>
       <h1 className='text-xl uppercase'>data Array</h1>
       <SearchBar list={dataArray} setList={setData} />
-      {data.map(item=>(
-         <p>{item}</p>
+      {data.map((item,index)=>(
+         <p key={index}>{item}</p>
          ))}
 
       <hr className='mt-5'/>
       <h1 className='text-xl uppercase'>data Object</h1>
-      {dataObject.map(item=>(
-        <p>{item.name} | {item.details.age} ans | {item.details.type} </p>
+      <SearchBar placeholder={"filter by age"} filterField={item=>item.details.age.toString()} list={dataObject} setList={setData2} />
+      {data2.map((item,index)=>(
+        <p key={index}>{item.name} | {item.details.age} ans | {item.details.type} </p>
       ))}
 
     </div>
