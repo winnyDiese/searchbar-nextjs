@@ -1,10 +1,14 @@
-import Image from 'next/image'
+"use client"
+import { useState } from 'react'
+import SearchBar from './seachbar/page'
+import AutherBar from './autherField/page'
 
 export default function Home() {
   const dataArray = [
       "John",
       "Matthieu",
-      "Richard"
+      "Richard",
+      "Paul"
   ]
 
   const dataObject = [
@@ -14,14 +18,17 @@ export default function Home() {
       {name:"Mukongo", details:{age:43,type:"informaticien"}},
   ]
 
+  const [data,setData] = useState(dataArray)
+
   return (
     <div className='p-5 text-sm'>
       <h1 className='text-xl uppercase'>data Array</h1>
-      {dataArray.map(item=>(
-        <p>{item}</p>
-      ))}
+      <SearchBar list={dataArray} setList={setData} />
+      {data.map(item=>(
+         <p>{item}</p>
+         ))}
 
-      <hr className='mt-2'/>
+      <hr className='mt-5'/>
       <h1 className='text-xl uppercase'>data Object</h1>
       {dataObject.map(item=>(
         <p>{item.name} | {item.details.age} ans | {item.details.type} </p>
